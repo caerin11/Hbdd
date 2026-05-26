@@ -1,0 +1,595 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Happy Birthday ✨</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:#050816;
+    color:white;
+}
+
+/* ===== MAIN SCENE ===== */
+
+.scene{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+/* ===== STARS ===== */
+
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+
+    from{
+        opacity:0.3;
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.8);
+    }
+}
+
+/* ===== SHOOTING STARS ===== */
+
+.shooting-star{
+    position:absolute;
+
+    left:-200px;
+
+    width:180px;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        white,
+        rgba(255,255,255,0)
+    );
+
+    border-radius:50%;
+
+    transform:rotate(-25deg);
+
+    opacity:0;
+
+    animation:shoot 6s linear infinite;
+}
+
+.shooting-star::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    background:white;
+
+    border-radius:50%;
+
+    top:-3px;
+    left:0;
+
+    box-shadow:0 0 15px white;
+}
+
+@keyframes shoot{
+
+    0%{
+        transform:
+        translateX(0)
+        translateY(0)
+        rotate(-25deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translateX(140vw)
+        translateY(70vh)
+        rotate(-25deg);
+
+        opacity:0;
+    }
+}
+
+/* ===== CENTER ===== */
+
+.center{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+}
+
+/* ===== CAKE ===== */
+
+.cake{
+    position:relative;
+    width:180px;
+    margin:auto;
+    cursor:pointer;
+}
+
+.cake-base{
+
+    width:180px;
+    height:90px;
+
+    background:#ffb6c1;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 0 25px rgba(255,182,193,0.5);
+}
+
+.cake-top{
+
+    width:180px;
+    height:25px;
+
+    background:#ffdbe3;
+
+    border-radius:20px;
+}
+
+/* ===== CANDLE ===== */
+
+.candle{
+
+    width:14px;
+    height:50px;
+
+    background:white;
+
+    position:absolute;
+
+    top:-45px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:5px;
+}
+
+.flame{
+
+    width:18px;
+    height:18px;
+
+    background:gold;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    top:-14px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    box-shadow:0 0 20px gold;
+
+    animation:flicker 0.2s infinite alternate;
+}
+
+@keyframes flicker{
+
+    from{
+        transform:
+        translateX(-50%)
+        scale(1);
+    }
+
+    to{
+        transform:
+        translateX(-50%)
+        scale(1.15);
+    }
+}
+
+/* ===== DIALOGUE BOX ===== */
+
+.dialogue-box{
+
+    position:absolute;
+
+    bottom:40px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:85%;
+
+    background:rgba(0,0,0,0.55);
+
+    border:2px solid rgba(255,255,255,0.15);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    backdrop-filter:blur(8px);
+}
+
+.name{
+    color:#ffb6ff;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.text{
+    min-height:60px;
+    line-height:1.6;
+}
+
+.next{
+    text-align:right;
+    margin-top:12px;
+    opacity:0.7;
+    font-size:14px;
+}
+
+/* ===== FINAL MESSAGE ===== */
+
+.final-message{
+
+    position:absolute;
+    inset:0;
+
+    background:rgba(0,0,0,0.9);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:30px;
+
+    animation:fadeIn 2s;
+}
+
+.final-message h1{
+
+    font-size:52px;
+
+    margin-bottom:20px;
+
+    color:#ffd6f5;
+}
+
+.final-message p{
+
+    max-width:700px;
+
+    line-height:1.8;
+
+    font-size:18px;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* ===== CONFETTI ===== */
+
+.confetti{
+
+    position:absolute;
+
+    width:10px;
+    height:10px;
+
+    background:white;
+
+    top:-10px;
+
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+
+    to{
+
+        transform:
+        translateY(110vh)
+        rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <!-- STARS -->
+    <div class="stars" id="stars"></div>
+
+    <!-- SHOOTING STARS -->
+    <div class="shooting-star"
+    style="top:10%; animation-delay:0s;"></div>
+
+    <div class="shooting-star"
+    style="top:30%; animation-delay:2s;"></div>
+
+    <div class="shooting-star"
+    style="top:55%; animation-delay:4s;"></div>
+
+    <!-- CAKE -->
+    <div class="center">
+
+        <div class="cake" id="cake">
+
+            <div class="candle">
+
+                <div class="flame"
+                id="flame"></div>
+
+            </div>
+
+            <div class="cake-top"></div>
+
+            <div class="cake-base"></div>
+
+        </div>
+
+    </div>
+
+    <!-- DIALOGUE -->
+    <div class="dialogue-box">
+
+        <div class="name">
+            faepae
+        </div>
+
+        <div class="text"
+        id="text"></div>
+
+        <div class="next">
+            click anywhere...
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FINAL MESSAGE -->
+
+<div class="final-message"
+id="finalMessage">
+
+    <h1>HAPPY BIRTHDAY ✨</h1>
+
+    <p>
+
+        Thank you for being here.<br><br>
+
+        I hope your days become brighter,
+        your smile stays warm,
+        and your heart is always surrounded
+        by people who truly care about you.<br><br>
+
+        Never forget that your existence
+        means something precious to this world.<br><br>
+
+        And tonight...<br>
+        the stars shine a little brighter for you. 🌙
+
+    </p>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="birthdayMusic" loop>
+
+    <!-- GANTI music.mp3 DENGAN NAMA FILE LAGU KANNA -->
+    <source src="/Happy Birthday (Music Box - Spieluhr A) [Instrumental]_musicaldown.com_1779749442.mp3" type="audio/mp3">
+
+</audio>
+
+<script>
+
+/* ===== CREATE STARS ===== */
+
+const starsContainer =
+document.getElementById("stars");
+
+for(let i=0;i<120;i++){
+
+    const star =
+    document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.top =
+    Math.random()*100 + "%";
+
+    star.style.left =
+    Math.random()*100 + "%";
+
+    star.style.animationDelay =
+    Math.random()*2 + "s";
+
+    starsContainer.appendChild(star);
+}
+
+/* ===== DIALOGUES ===== */
+
+const dialogues = [
+
+"heyyy devonn",
+
+"You finally came.",
+
+"I've been waiting for this day.",
+
+"Today is really special, you know?",
+
+"So before anything else...",
+
+"Happy Birthday. ✨",
+
+"I hope happiness always finds you.",
+
+"And whenever things get difficult...",
+
+"I hope you remember that you're precious.",
+
+"Now then...",
+
+"Go on.",
+
+"Make a wish and blow the candle. (click the candle). 🎂"
+
+];
+
+let index = 0;
+
+const text =
+document.getElementById("text");
+
+function showDialogue(){
+
+    text.innerHTML =
+    dialogues[index];
+}
+
+showDialogue();
+
+/* ===== NEXT DIALOGUE ===== */
+
+document.addEventListener("click", ()=>{
+
+    if(index < dialogues.length - 1){
+
+        index++;
+
+        showDialogue();
+    }
+});
+
+/* ===== BLOW CANDLE ===== */
+
+const cake =
+document.getElementById("cake");
+
+const flame =
+document.getElementById("flame");
+
+const finalMessage =
+document.getElementById("finalMessage");
+
+const birthdayMusic =
+document.getElementById("birthdayMusic");
+
+cake.addEventListener("click", ()=>{
+
+    if(index === dialogues.length - 1){
+
+        flame.style.display = "none";
+
+        createConfetti();
+
+        setTimeout(()=>{
+
+            finalMessage.style.display =
+            "flex";
+
+            birthdayMusic.play();
+
+        },1200);
+    }
+});
+
+/* ===== CONFETTI ===== */
+
+function createConfetti(){
+
+    for(let i=0;i<120;i++){
+
+        const confetti =
+        document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        confetti.style.left =
+        Math.random()*100 + "vw";
+
+        confetti.style.animationDuration =
+        (Math.random()*3 + 2) + "s";
+
+        confetti.style.opacity =
+        Math.random();
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>{
+
+            confetti.remove();
+
+        },5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
